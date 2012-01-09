@@ -9,6 +9,14 @@ if have_appserver:
 else:
     try:
         from google.appengine.tools import dev_appserver
+    except ImportError:
+        # we have the root of the App Engine SDK on the path, but not the extra libs
+        from dev_appserver import EXTRA_PATHS
+        import sys
+        sys.path = EXTRA_PATHS + sys.path
+        from google.appengine.tools import dev_appserver
+
+    try:
         from .boot import PROJECT_DIR
         appconfig = dev_appserver.LoadAppConfig(PROJECT_DIR, {},
                                                 default_partition='dev')[0]
