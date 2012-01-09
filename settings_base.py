@@ -58,7 +58,7 @@ FILE_UPLOAD_HANDLERS = (
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'BACKEND': 'djangoappengine.cache.GAEMemcachedCache',
         'TIMEOUT': 0,
     }
 }
